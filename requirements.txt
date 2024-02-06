@@ -1,0 +1,8 @@
+numpy
+pandas
+pyyaml
+matplotlib
+svgwrite
+perlin_noise
+Pillow
+scipy
