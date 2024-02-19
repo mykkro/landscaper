@@ -330,10 +330,10 @@ def main():
     gradient_landscape = apply_gradient_filter(blurred_landscape, threshold=0.0)
     blurred_landscape_2 = apply_gaussian_blur(gradient_landscape, 2*radius)
     #blurred_landscape = landscape
-    save_image(blurred_landscape_2, 'landscape.png')
-
+ 
     normalized = normalize_image(blurred_landscape_2)
     display_image(normalized)
+    save_image(normalized, 'target/landscape.png')
 
 
     # Example usage:
@@ -363,7 +363,7 @@ def main():
 
     # Generate 3D OBJ file
     scale_factor = 10
-    generate_3d_obj(img, 'landscape.obj', scale_factor=scale_factor)
+    generate_3d_obj(img, 'target/landscape.obj', scale_factor=scale_factor)
 
     # Plot 3D wireframe
     plot_3d_wireframe(img, scale_factor=scale_factor)
@@ -375,7 +375,7 @@ def main():
     # Choose an appropriate max_height_factor to achieve the desired maximum height
     max_height_factor = 10.0
     # Generate isometric SVG
-    generate_isometric_svg(img, 'landscape_isometric.svg', max_height_factor=max_height_factor)
+    generate_isometric_svg(img, 'target/landscape_isometric.svg', max_height_factor=max_height_factor)
 
 
 if __name__ == "__main__":
