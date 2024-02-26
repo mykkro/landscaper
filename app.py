@@ -14,6 +14,38 @@ import svgwrite
 from landscaper import generate_landscape, apply_gaussian_blur, apply_gradient_filter, normalize_image, display_image, save_image
 from landscaper import generate_occlusion_grid, handle_occlusion, generate_3d_obj, plot_3d_wireframe, generate_isometric_svg
 
+def save_isolines_svg(adjusted_horizontal_isolines, output_path='output.svg'):
+    # Define the size of the SVG canvas
+    svg_size = 1600, 800
+
+    # Create an SVG drawing
+    dwg = svgwrite.Drawing(output_path, profile='tiny', size=svg_size)
+
+    # Calculate the range of points in adjusted_horizontal_isolines
+    min_x = np.min(adjusted_horizontal_isolines[:, :, 0])
+    max_x = np.max(adjusted_horizontal_isolines[:, :, 0])
+    min_y = np.min(adjusted_horizontal_isolines[:, :, 1])
+    max_y = np.max(adjusted_horizontal_isolines[:, :, 1])
+
+    # Set the viewbox based on the range of points
+    viewbox = (min_x, min_y, max_x - min_x, max_y - min_y)
+    dwg.viewbox(*viewbox)
+
+    # Create a group (<g>) to contain individual polylines
+    g = dwg.g()
+
+    # Iterate through the rows of polylines and add them to the group
+    for row in adjusted_horizontal_isolines:
+        # print(row)
+        polyline = dwg.polyline(points=row.tolist(), fill='none', stroke='black', stroke_width=0.002)
+        g.add(polyline)
+
+    # Add the group to the SVG drawing
+    dwg.add(g)
+
+    # Save the SVG file
+    dwg.save()
+
 def main():
     size = 200
     scale = 100.0
@@ -57,6 +89,8 @@ def main():
         plt.plot(il[:,0], il[:,1], color="r")
 
     plt.show()
+
+    save_isolines_svg(adjusted_horizontal_isolines, output_path='output.svg')
 
     # Generate 3D OBJ file
     scale_factor = 10
