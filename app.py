@@ -1,3 +1,4 @@
+import sys
 import numpy as np
 from perlin_noise import PerlinNoise
 from PIL import Image, ImageFilter
@@ -43,7 +44,7 @@ def main():
 
     today = datetime.strftime(datetime.now(), "%Y%m%d_%H%M%S")
 
-    config_path = "config/test2.yaml"
+    config_path = sys.argv[1] if len(sys.argv) >= 2 else "config/test2.yaml"
     
     with open(config_path, 'r') as file:
         config = yaml.safe_load(file)
