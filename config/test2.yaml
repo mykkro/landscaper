@@ -1,15 +1,15 @@
-size: 200
-scale: 100.0
+size: 400
+scale: 200
 seed: 0
 radius: 6.0
 
 plot: false
 
-occ_grid_factor: 2
+occ_grid_factor: 1
 occ_grid_tilt_angle: 30
 occ_grid_yaw_angle: 45
 occ_grid_view_point_z: 10
     
 scale_factor: 10
 
-svg_size: [1600, 800]
+svg_size: [3200, 1600]

@@ -228,11 +228,11 @@ class IntervalGroup:
 
 
 def adjust_horizontal_isoline(line, moving_horizon):
-    print("Line:", line.shape, len(line))
-    print("Initial moving horizon:", moving_horizon.data)
+    # print("Line:", line.shape, len(line))
+    # print("Initial moving horizon:", moving_horizon.data)
 
     updated_line = np.array(line).copy()
-    print("Updated line:", updated_line.shape)
+    # print("Updated line:", updated_line.shape)
     for j, pt in enumerate(updated_line):
         x, y = pt
         new_y = moving_horizon.clamp_to(x, y, delta=1e-6) 
